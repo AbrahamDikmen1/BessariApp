@@ -4,8 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import AboutPage from "./pages/AboutPage";
 import NewsPage from "./pages/NewsPage";
 import ContactPage from "./pages/ContactPage";
-
-
+import AdminPage from "./pages/AdminPage";
 
 const RouteProvider = () => {
   return (
@@ -15,6 +14,7 @@ const RouteProvider = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </div>
   );

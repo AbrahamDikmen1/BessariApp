@@ -19,9 +19,12 @@ import ListItemButton from "@mui/material/ListItemButton";
 import { useNavigate } from "react-router";
 import { ListItemText } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
-import { navTabs, settings } from "./StyledComponents/styledNavbarComponents";
-
-function Navbar() {
+import {
+  navTabs,
+  settings,
+  navTabs2,
+} from "../StyledComponents/styledNavbarComponents";
+const NavbarBigScreen = () => {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -45,6 +48,11 @@ function Navbar() {
   useEffect(() => {
     const routeToHomePage = () => {
       switch (page) {
+        case "Home":
+          navigate("/");
+          setPage("");
+          break;
+
         case "Om Oss":
           navigate("/about");
           setPage("");
@@ -76,16 +84,8 @@ function Navbar() {
 
   const list = (anchor) => (
     <Box
-      sx={{
-        mr: 2,
-        display: { xs: "flex", md: "none" },
-        flexGrow: 1,
-        fontFamily: "monospace",
-        fontWeight: 700,
-        letterSpacing: ".3rem",
-        color: "inherit",
-        textDecoration: "none",
-      }}
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
@@ -120,68 +120,7 @@ function Navbar() {
         <Toolbar disableGutters>
           {/* Mobil skärm  */}
 
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "sans-serif",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              color="inherit"
-            >
-              {["left"].map((anchor) => (
-                <React.Fragment key={anchor}>
-                  <MenuIcon onClick={toggleDrawer(anchor, true)}>
-                    {anchor}
-                  </MenuIcon>
-                  <Drawer
-                    anchor={anchor}
-                    open={state[anchor]}
-                    onClose={toggleDrawer(anchor, false)}
-                  >
-                    {list(anchor)}
-                  </Drawer>
-                </React.Fragment>
-              ))}
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            ></Menu>
-          </Box>
-
+       
           {/* Stationär  */}
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
@@ -258,5 +197,6 @@ function Navbar() {
       </Container>
     </AppBar>
   );
-}
-export default Navbar;
+};
+
+export default NavbarBigScreen;
