@@ -1,33 +1,28 @@
 import styled from "styled-components";
-import { Container } from "@mui/material";
+import { Container, Box, Input } from "@mui/material";
+import { Button } from "@mui/material";
 
-export const LoginContainer = styled(Container)`
-  margin: 10vh auto;
-  width: 100%;
+export const RegisterContainer = styled(Container)`
+  margin: 5vh auto;
+  height: 100vh;
+  width: 100vw;
   text-align: center;
   color: white;
   align-items: center;
-  background-color: #1976d2;
-  border-radius: 1rem;
+  background-color: #131324;
+
+  h1 {
+    margin-top: 3vh;
+    color: white;
+    text-transform: uppercase;
+    font-family: Irish Grover;
+  }
   form {
+    background-color: #00000076;
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    section {
-      input {
-        background-color: white;
-
-        color: black;
-      }
-    }
-    h1 {
-      margin-top: 5vh;
-      color: white;
-      text-transform: uppercase;
-      font-family: Irish Grover;
-    }
 
     input {
       margin-top: 3vh;
@@ -45,7 +40,7 @@ export const LoginContainer = styled(Container)`
     }
 
     button {
-      background-color: #00000076;
+      background-color: #997af0;
       color: white;
       padding: 2vh 5%;
       border: 0;
@@ -59,8 +54,27 @@ export const LoginContainer = styled(Container)`
 
       transition: 0.5s ease-ease-in-out;
       &:hover {
-        background-color: #00000076;
+        background-color: #4e0eff;
       }
+    }
+
+    p {
+      width: 60%;
+      margin-top: 1vh;
+      margin-bottom: 1vh;
+
+      color: #ffbe33;
+    }
+    span {
+      color: white;
+      text-transform: uppercase;
+      margin-top: 2vh;
+      a {
+        color: #4e0eff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      margin-bottom: 10%;
     }
   }
 `;

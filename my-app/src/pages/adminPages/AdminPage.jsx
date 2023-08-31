@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { loginUser } from "../features/authSlice";
-import { Link } from "react-router-dom";
-import { LoginContainer } from "../Components/StyledComponents/styledLoggin";
+import { loginUser } from "../../features/authSlice";
+import { LoginContainer } from "../../Components/StyledComponents/styledLoggin";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
+  console.log(auth);
 
   useEffect(() => {
     if (auth._id) {

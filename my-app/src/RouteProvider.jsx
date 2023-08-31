@@ -4,8 +4,10 @@ import LandingPage from "./pages/LandingPage";
 import AboutPage from "./pages/AboutPage";
 import NewsPage from "./pages/NewsPage";
 import ContactPage from "./pages/ContactPage";
-import AdminPage from "./pages/AdminPage";
-
+import AdminPage from "./pages/adminPages/AdminPage";
+import RegisterPage from "./pages/RegisterPage";
+import AdminProfile from "./pages/adminPages/adminProfile/AdminProfile";
+import Feed from "./Components/feed/Feed";
 const RouteProvider = () => {
   return (
     <div>
@@ -14,7 +16,10 @@ const RouteProvider = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/login" element={<AdminPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/feed" element={<Feed />} />
+        <Route path="/adminProfile" element={<AdminProfile />} />
       </Routes>
     </div>
   );

@@ -1,18 +1,15 @@
 import React from "react";
 import RouteProvider from "./RouteProvider";
-import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
+import Navbar from "./Components/navbar/Navbar";
+import Footer from "./Components/footer/Footer";
 function App() {
   return (
     <div>
-
       <Navbar />
 
       <RouteProvider></RouteProvider>
 
       <Footer />
-
-
     </div>
   );
 }

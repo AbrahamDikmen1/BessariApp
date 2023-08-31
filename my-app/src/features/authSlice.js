@@ -8,11 +8,38 @@ const initialState = {
   token: localStorage.getItem("token"),
   name: "",
   email: "",
-  isAdmin: "",
+  registerStatus: "",
+  registerError: "",
   loginStatus: "",
   loginError: "",
   userLoaded: false,
 };
+
+export const registerUser = createAsyncThunk(
+  "auth/registerUser",
+  async (user, { rejectWithValue }) => {
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      await axios.post(
+        "/api/user/register",
+        {
+          name: user.name,
+          email: user.email,
+          password: user.password,
+          repeat_password: user.repeat_password,
+        },
+        config
+      );
+    } catch (err) {
+      console.log(err.response.data);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
@@ -63,9 +90,8 @@ const authSlice = createSlice({
       }
     },
     async logoutUser(state, action) {
-      localStorage.removeItem("token");
-
-      await axios.post("/api/user/logOut").then((response) => {
+      await axios.post("/api/user/logout").then((response) => {
+        localStorage.removeItem("token");
         return {
           response,
           ...state,
@@ -74,7 +100,8 @@ const authSlice = createSlice({
           name: "",
           email: "",
           isAdmin: "",
-
+          registerStatus: "",
+          registerError: "",
           loginStatus: "",
           loginError: "",
           userLoaded: false,
@@ -83,6 +110,23 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // Register User
+    builder.addCase(registerUser.pending, (state, action) => {
+      return { ...state, registerStatus: "pending" };
+    });
+    builder.addCase(registerUser.fulfilled, (state, action) => {
+      return { ...state, userLoaded: false, registerStatus: "success" };
+    });
+    builder.addCase(registerUser.rejected, (state, action) => {
+      if (action.payload) {
+        return {
+          ...state,
+          registerStatus: "rejected",
+          registerError: action.payload,
+        };
+      } else return state;
+    });
+
     // Login user
     builder.addCase(loginUser.pending, (state, action) => {
       return { ...state, loginStatus: "pending" };

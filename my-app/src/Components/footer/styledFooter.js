@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 export const FooterContainer = styled.div`
-  background-color: #2d2d32;
-
   .sb_footer_section_padding {
     padding: 4rem 4rem;
+    background-color: #2d2d32;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    right: 0;
   }
 
   .sb__footer {
@@ -20,15 +23,14 @@ export const FooterContainer = styled.div`
     flex-wrap: wrap;
     width: 100%;
     text-align: left;
-    margin-bottom: 2rem;
   }
 
   .sb__footer-links_div {
     width: 150px;
-    margin: 1rem;
+
     display: flex;
     justify-content: flex-start;
-    flex-direction: column;
+
     color: white;
   }
 
@@ -48,7 +50,6 @@ export const FooterContainer = styled.div`
   .sb__footer-links_div h4 {
     font-size: 14px;
     line-height: 17px;
-    margin-bottom: 0.9rem;
   }
 
   .sb__footer-links_div p {

@@ -19,9 +19,16 @@ import ListItemButton from "@mui/material/ListItemButton";
 import { useNavigate } from "react-router";
 import { ListItemText } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
-import { navTabs, settings } from "./StyledComponents/styledNavbarComponents";
-
+import { useDispatch, useSelector } from "react-redux";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { logoutUser } from "../../features/authSlice";
+import { navTabs } from "./StyledNavbar";
+import profilePicture from "../../assets/nedladdning.jpg";
 function Navbar() {
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  console.log(auth);
+
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -64,6 +71,49 @@ function Navbar() {
     routeToHomePage();
   }, [navigate, page]);
 
+  const settings = [
+    {
+      text: (
+        <span
+          onClick={() => {
+            navigate("/adminProfile");
+          }}
+        >
+          {" "}
+          Profil{" "}
+        </span>
+      ),
+    },
+
+    {
+      text: (
+        <span
+          onClick={() => {
+            navigate("/feed");
+          }}
+        >
+          {" "}
+          Skapa inlägg{" "}
+        </span>
+      ),
+    },
+
+    {
+      icon: <LogoutIcon />,
+
+      text: (
+        <span
+          onClick={() => {
+            dispatch(logoutUser(null));
+          }}
+        >
+          {" "}
+          Logga ut{" "}
+        </span>
+      ),
+    },
+  ];
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -78,7 +128,13 @@ function Navbar() {
     <Box
       sx={{
         mr: 2,
-        display: { xs: "flex", md: "none" },
+        backgroundColor: "none",
+        boxShadow: "none",
+        display: {
+          xs: "flex",
+          md: "none",
+        },
+
         flexGrow: 1,
         fontFamily: "monospace",
         fontWeight: 700,
@@ -99,10 +155,7 @@ function Navbar() {
               to={tab.route}
             >
               <ListItemButton>
-                <div
-                  className="row d-flex flex-column justify-content-center align-items-center"
-                  style={{ marginLeft: "1vh" }}
-                >
+                <div className="row d-flex flex-column justify-content-center align-items-center">
                   <div style={{ marginRight: "1vh" }}>{tab.icon} </div>
                 </div>
                 <ListItemText primary={tab.text} />
@@ -139,7 +192,13 @@ function Navbar() {
             LOGO
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box
+            sx={{
+              bgcolor: "transparent",
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -221,39 +280,41 @@ function Navbar() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">
-                    {setting.icon}
-
-                    {setting.text}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          {auth._id ? (
+            <>
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src={profilePicture} />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting.text} onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">{setting.text}</Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            </>
+          ) : (
+            ""
+          )}
         </Toolbar>
       </Container>
     </AppBar>
