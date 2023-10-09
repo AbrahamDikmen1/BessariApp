@@ -11,19 +11,19 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import { useNavigate } from "react-router";
-import { ListItemText } from "@mui/material";
+
 import Drawer from "@mui/material/Drawer";
 import { useDispatch, useSelector } from "react-redux";
-import LogoutIcon from "@mui/icons-material/Logout";
 import { logoutUser } from "../../features/authSlice";
 import { navTabs } from "./StyledNavbar";
 import profilePicture from "../../assets/nedladdning.jpg";
+import bessariLogo from "../../assets/bessariLogo.png";
 function Navbar() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -66,6 +66,8 @@ function Navbar() {
           navigate("/news");
           setPage("");
           break;
+
+        default:
       }
     };
     routeToHomePage();
@@ -89,26 +91,13 @@ function Navbar() {
       text: (
         <span
           onClick={() => {
-            navigate("/feed");
-          }}
-        >
-          {" "}
-          Skapa inlägg{" "}
-        </span>
-      ),
-    },
-
-    {
-      icon: <LogoutIcon />,
-
-      text: (
-        <span
-          onClick={() => {
             dispatch(logoutUser(null));
+            {
+              navigate("/");
+            }
           }}
         >
-          {" "}
-          Logga ut{" "}
+          Logga ut
         </span>
       ),
     },
@@ -127,20 +116,13 @@ function Navbar() {
   const list = (anchor) => (
     <Box
       sx={{
-        mr: 2,
-        backgroundColor: "none",
-        boxShadow: "none",
+        mt: 20,
+        m: 4,
+
         display: {
           xs: "flex",
           md: "none",
         },
-
-        flexGrow: 1,
-        fontFamily: "monospace",
-        fontWeight: 700,
-        letterSpacing: ".3rem",
-        color: "inherit",
-        textDecoration: "none",
       }}
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
@@ -155,25 +137,53 @@ function Navbar() {
               to={tab.route}
             >
               <ListItemButton>
-                <div className="row d-flex flex-column justify-content-center align-items-center">
-                  <div style={{ marginRight: "1vh" }}>{tab.icon} </div>
-                </div>
-                <ListItemText primary={tab.text} />
+                <Button
+                  sx={{
+                    m: 0.5,
+                    p: 0,
+                    width: "100%",
+                    backgroundColor: "#fafbfc",
+                  }}
+                >
+                  <div
+                    style={{
+                      color: "#45657e",
+                      fontFamily: "-moz-initial",
+                      fontWeight: "bold",
+                      fontSize: "18px",
+                    }}
+                  >
+                    {tab.text}
+                    <Divider
+                      sx={{
+                        width: "100%",
+                        color: "#45657e",
+
+                        fontWeight: "bold",
+                        fontSize: "20px",
+                      }}
+                    />
+                  </div>
+                </Button>
               </ListItemButton>
             </ListItem>
           ))}
       </List>
-      <Divider />
     </Box>
   );
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="static" sx={{ backgroundColor: "#fafbfc" }}>
+      <Container
+        maxWidth="xl"
+        sx={{
+          backgroundColor: "#fafbfc",
+          color: "#fafbfc",
+        }}
+      >
         <Toolbar disableGutters>
           {/* Mobil skärm  */}
-
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* Stationär  */}
           <Typography
             variant="h6"
             noWrap
@@ -181,6 +191,7 @@ function Navbar() {
             href="/"
             sx={{
               mr: 2,
+
               display: { xs: "none", md: "flex" },
               fontFamily: "sans-serif",
               fontWeight: 700,
@@ -189,14 +200,19 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            <img
+              src={bessariLogo}
+              height={30}
+              width={50}
+              style={{ marginRight: "20px" }}
+            />
           </Typography>
-
           <Box
             sx={{
               bgcolor: "transparent",
+
               flexGrow: 1,
-              display: { xs: "flex", md: "none" },
+              display: { xs: "flex", md: "none", backgroundColor: "#fafbfc" },
             }}
           >
             <IconButton
@@ -204,7 +220,7 @@ function Navbar() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              color="inherit"
+              backgroundColor="#fafbfc"
             >
               {["left"].map((anchor) => (
                 <React.Fragment key={anchor}>
@@ -221,28 +237,9 @@ function Navbar() {
                 </React.Fragment>
               ))}
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            ></Menu>
           </Box>
 
           {/* Stationär  */}
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -250,6 +247,7 @@ function Navbar() {
             href="/"
             sx={{
               mr: 2,
+              backgroundColor: "#fafbfc",
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
@@ -259,11 +257,11 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            <img src={bessariLogo} height={50} style={{ padding: "10px" }} />
           </Typography>
-
           <Box
             sx={{
+              bgcolor: "#fafbfc",
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
             }}
@@ -273,17 +271,24 @@ function Navbar() {
                 key={index2}
                 onClick={() => setPage(tab2.text)}
                 to={tab2.route}
-                sx={{ my: 2, color: "white", display: "block" }}
+                style={{
+                  color: "#45657e",
+                  fontFamily: "-moz-initial",
+                  fontWeight: "bold",
+                  fontSize: "18px",
+                }}
               >
                 {tab2.text}
               </Button>
             ))}
           </Box>
-
           {auth._id ? (
             <>
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
+              <Box sx={{ flexGrow: 0, backgroundColor: "#fafbfc" }}>
+                <Tooltip
+                  title="Open settings"
+                  style={{ backgroundColor: "#fafbfc" }}
+                >
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar alt="Remy Sharp" src={profilePicture} />
                   </IconButton>

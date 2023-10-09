@@ -1,19 +1,17 @@
 import Feed from "../../../Components/feed/Feed";
 import { AdminProfileContainer } from "./styledAdminProfile";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import profilePicture from "../../../assets/nedladdning.jpg";
-
+import bessariLogo from "../../../assets/bessariLogo.png";
 const AdminProfile = () => {
   const auth = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-  console.log(auth);
+
   return (
     <AdminProfileContainer>
       <div className="profile">
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
-              <img className="profileCoverImg" src="" alt="" />
               <img className="profileUserImg" src={profilePicture} alt="" />
             </div>
             <div className="profileInfo">
@@ -21,7 +19,7 @@ const AdminProfile = () => {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Feed />
+            <Feed name={auth.name} />
           </div>
         </div>
       </div>

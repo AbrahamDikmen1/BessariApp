@@ -1,46 +1,129 @@
 import React from "react";
-import { PostContainer } from "./styledPost";
-import { MoreVert } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { Users } from "../../dummyData";
+import { PostContainer } from "./styledPost";
 import profilePicture from "../../assets/nedladdning.jpg";
+import { format } from "timeago.js";
+import { useSelector } from "react-redux";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-const Post = ({ post }) => {
-  const dispatch = useDispatch();
+import PostModal from "./PostModal";
+const ITEM_HEIGHT = 48;
 
+const Post = ({ post, setDeletePost }) => {
   const auth = useSelector((state) => state.auth);
-  const [like, setLike] = useState(post.like);
-  const [isLiked, setIsLiked] = useState(false);
 
-  const likeHandler = () => {
-    setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked);
+  const [openModal, setOpenModal] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setAnchorEl(null);
+  };
+
+  const options = [
+    {
+      text: (
+        <span
+          onClick={() => {
+            setDeletePost(post._id);
+          }}
+        >
+          Ta bort
+        </span>
+      ),
+    },
+    {
+      text: (
+        <>
+          {openModal === false ? (
+            <span onClick={handleOpenModal}> Redigera </span>
+          ) : (
+            <>
+              <PostModal
+                openModal={openModal}
+                post={post}
+                handleCloseModal={handleCloseModal}
+              />
+            </>
+          )}
+        </>
+      ),
+    },
+  ];
+
   return (
     <PostContainer>
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
             <img className="postProfileImg" src={profilePicture} alt="" />
-            <span className="postUsername">
-              {Users.filter((u) => u.id === post?.userId)[0].username}
-            </span>
-            <span className="postDate">{post.date}</span>
+
+            <span className="postUsername">{auth.name}</span>
+            <span className="postDate">{format(post.createdAt)}</span>
           </div>
-          <div className="postTopRight">
-            <MoreVert />
-          </div>
+
+          {auth._id ? (
+            <div className="postTopRight">
+              <IconButton
+                aria-label="more"
+                id="long-button"
+                aria-controls={open ? "long-menu" : undefined}
+                aria-expanded={open ? "true" : undefined}
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                <MoreVertIcon />
+              </IconButton>
+              <Menu
+                id="long-menu"
+                MenuListProps={{
+                  "aria-labelledby": "long-button",
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                property={{
+                  style: {
+                    maxHeight: ITEM_HEIGHT * 4.5,
+                    width: "20ch",
+                  },
+                }}
+              >
+                <div>
+                  {options.map((option) => (
+                    <MenuItem key={option}>{option.text}</MenuItem>
+                  ))}
+                </div>
+              </Menu>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
+
         <div className="postCenter">
-          <span className="postText">{post?.desc}</span>
-          <img className="postImg" src={post.photo} alt="" />
-        </div>
-        <div className="postBottom">
-          <div className="postBottomLeft">
-            <img className="likeIcon" src="assets/like.png" alt="" />
-            <img className="likeIcon" src="assets/heart.png" alt="" />
-          </div>
+
+         
+
+
+          <img
+            className="postImg"
+            src={`http://localhost:8080/images/` + post.img}
+            alt="img"
+          />{" "}
+          <textarea className="postText" defaultValue={post.desc} readOnly />{" "}
         </div>
       </div>
     </PostContainer>

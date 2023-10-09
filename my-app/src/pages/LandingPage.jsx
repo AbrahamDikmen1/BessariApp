@@ -1,21 +1,15 @@
 import React from "react";
-import forelasning from "../assets/forelasning.jpg";
+
 import { LandingPageContainer } from "../Components/StyledComponents/styledLandingPage";
 import CardLayout from "../Components/CardLayout";
+
+import Carousel from "../Components/StyledComponents/CarouselLandingPage";
 const LandingPage = () => {
   return (
     <LandingPageContainer>
-      <div className="imgContainer">
-        <img
-          src={forelasning}
-          alt="landingPageImg"
-          className="landingPageImg"
-          style={{ width: "100%" }}
-        />
-        {/* <button className="btn">BOKA FÖRELÄSARE</button> */}
-      </div>
+      <Carousel />
 
-      <div className="advertising" >
+      <div className="advertising">
         <CardLayout />
       </div>
     </LandingPageContainer>

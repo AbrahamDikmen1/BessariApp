@@ -25,7 +25,7 @@ export const registerUser = createAsyncThunk(
         },
       };
       await axios.post(
-        "/api/user/register",
+        "/api/auth/register",
         {
           name: user.name,
           email: user.email,
@@ -51,7 +51,7 @@ export const loginUser = createAsyncThunk(
         },
       };
       const token = await axios.post(
-        `/api/user/login`,
+        `/api/auth/login`,
         {
           name: user.name,
           password: user.password,
@@ -90,8 +90,9 @@ const authSlice = createSlice({
       }
     },
     async logoutUser(state, action) {
-      await axios.post("/api/user/logout").then((response) => {
+      await axios.post("/api/auth/logout").then((response) => {
         localStorage.removeItem("token");
+
         return {
           response,
           ...state,

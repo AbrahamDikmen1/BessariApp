@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const ContactPage = () => {
-  return (
-    <div>ContactPageddd</div>
-  )
-}
+  return <div className="postWrapper"></div>;
+};
 
-export default ContactPage
+export default ContactPage;

@@ -23,8 +23,8 @@ export const PostContainer = styled.div`
   }
 
   .postProfileImg {
-    width: 32px;
-    height: 32px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -43,11 +43,60 @@ export const PostContainer = styled.div`
     margin: 20px 0;
   }
 
+  .postText {
+    cursor: default;
+    display: flex;
+    width: 100%;
+    height: 70px;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+    margin-top: 20px;
+    min-height: 30vw;
+    border: none;
+    padding: 2px;
+  }
+
   .postImg {
     margin-top: 20px;
     width: 100%;
     max-height: 500px;
     object-fit: contain;
+  }
+
+  //Post modal
+
+  .modal-card-customization {
+    .modalImg {
+      margin-top: 20px;
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+    }
+
+    textarea {
+      display: flex;
+      width: 100%;
+      height: 70px;
+      outline: none;
+      resize: none;
+      font-size: 16px;
+      margin-top: 20px;
+      border-radius: 5px;
+      border-color: #bfbfbf;
+      padding: 2px;
+    }
+    textarea:is(:focus, :valid) {
+      border-width: 2px;
+      border-color: #4671ea;
+    }
+
+    .postImg {
+      margin-top: 20px;
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+    }
   }
 
   .postBottom {
@@ -61,20 +110,32 @@ export const PostContainer = styled.div`
     align-items: center;
   }
 
-  .likeIcon {
-    width: 24px;
-    height: 24px;
-    margin-right: 5px;
+  .shareBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .shareOptions {
+    display: flex;
+    margin-left: 20px;
+    margin: 10px;
+  }
+
+  .updateOption {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
     cursor: pointer;
   }
 
-  .postLikeCounter {
-    font-size: 15px;
+  .updateIcon {
+    font-size: 18px;
+    margin-right: 3px;
   }
 
-  .postCommentText {
-    cursor: pointer;
-    border-bottom: 1px dashed gray;
-    font-size: 15px;
+  .updateOptionText {
+    font-size: 14px;
+    font-weight: 500;
   }
 `;

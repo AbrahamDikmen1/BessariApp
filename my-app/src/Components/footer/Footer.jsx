@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="sb_footer_section_padding">
         <div className="sb__footer-links">
           <div className="sb__footer-links_div">
-            <h4>Coming soon on</h4>
+            <h4>Sociala Medier</h4>
             <div className="socialmedia">
               <p>
                 <img src="fb" alt="" />{" "}
@@ -28,22 +28,19 @@ const Footer = () => {
 
         <div className="sb__footer-below">
           <div className="sb__footer-copyright">
-            <p>@{new Date().getFullYear()} CodeInn. All right reserved.</p>
+            <p>
+              Bessari @{new Date().getFullYear()} HULDA LINDGRENS GATA 8, SE-421
+              31 VÄSTRA FRÖLUNDA, TLF: 031 38 37 000, KONTAKT@BESSARI.SE
+            </p>
           </div>
           <div className="sb__footer-below-links">
-            <a href="/terms">
-              <div>
-                <p>Kontakt</p>
-              </div>
-            </a>
-
-            <a href="/terms">
+            <a href="/datapolicy-htm/">
               <div>
                 <p>Datapolicy</p>
               </div>
             </a>
 
-            <a href="/terms">
+            <a href="/cookie/">
               <div>
                 <p>Om Cookies</p>
               </div>

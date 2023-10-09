@@ -14,7 +14,8 @@ const Share = () => {
 
   const desc = useRef();
   const [file, setFile] = useState(null);
-  console.log(auth._id);
+  const [image, setImage] = useState("");
+
   const submitHandler = async (e) => {
     e.preventDefault();
     const newPost = {
@@ -22,17 +23,18 @@ const Share = () => {
       desc: desc.current.value,
     };
     if (file) {
-      const data = new FormData();
+      const fd = new FormData();
       const fileName = Date.now() + file.name;
-      data.append("name", fileName);
-      data.append("file", file);
+      fd.append("name", fileName);
+      fd.append("file", file);
       newPost.img = fileName;
+
       console.log(newPost);
-      try {
-        await axios.post("/api/upload", data);
-      } catch (err) {
-        console.log(err, "1");
-      }
+
+      await axios
+        .post("/api/upload", fd)
+        .then((res) => setImage(res.data[0].image))
+        .catch((err) => console.log(err));
     }
     try {
       await axios.post("/api/posts", newPost);
@@ -43,7 +45,8 @@ const Share = () => {
       }
     }
   };
-  console.log(file);
+
+  console.log(image);
   return (
     <ShareContainer>
       <form onSubmit={submitHandler}>
@@ -51,10 +54,11 @@ const Share = () => {
           <div className="shareTop">
             <img className="shareProfileImg" src={profilePicture} alt="" />
 
-            <input
+            <textarea
               placeholder={"What's in your mind " + auth.name + "?"}
               className="shareInput"
               ref={desc}
+              rows={10}
             />
           </div>
           <hr className="shareHr" />
@@ -64,18 +68,29 @@ const Share = () => {
                 className="shareImg"
                 src={URL.createObjectURL(file)}
                 alt=""
+                height={80}
               />
               <Cancel
                 className="shareCancelImg"
                 onClick={() => setFile(null)}
+                style={{ cursor: "pointer" }}
               />
             </div>
           )}
           <div className="shareBottom">
             <div className="shareOptions">
               <div className="shareOption">
-                <PermMedia htmlColor="tomato" className="shareIcon" />
-                <span className="shareOptionText">Photo or Video</span>
+                <label htmlFor="file" className="shareOption">
+                  <PermMedia htmlColor="tomato" className="shareIcon" />
+                  <span className="shareOptionText">Photo or Video</span>
+                  <input
+                    style={{ display: "none" }}
+                    type="file"
+                    id="file"
+                    accept=".png,.jpeg,.jpg"
+                    onChange={(e) => setFile(e.target.files[0])}
+                  />
+                </label>
               </div>
             </div>
             <button className="shareButton">Share</button>

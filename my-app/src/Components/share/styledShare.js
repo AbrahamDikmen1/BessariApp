@@ -24,8 +24,20 @@ export const ShareContainer = styled.div`
   }
 
   .shareInput {
-    border: none;
-    width: 80%;
+    color: black;
+  
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 70px;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+    margin-top: 20px;
+    border: 0;
+    border-radius: 0;
+    border-color: #bfbfbf;
+    padding: 2px;
   }
 
   .shareInput:focus {
@@ -45,6 +57,7 @@ export const ShareContainer = styled.div`
   .shareOptions {
     display: flex;
     margin-left: 20px;
+    margin: 10px;
   }
 
   .shareOption {

@@ -11,13 +11,14 @@ export const AdminProfileContainer = styled.div`
 
   .profileCover {
     height: 320px;
+    text-align: center;
     position: relative;
   }
 
   .profileCoverImg {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
+    width: 70%;
+    height: 320px;
+    /* object-fit: cover; */
   }
 
   .profileUserImg {
