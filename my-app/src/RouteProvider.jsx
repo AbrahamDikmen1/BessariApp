@@ -4,10 +4,10 @@ import LandingPage from "./pages/LandingPage";
 import AboutPage from "./pages/AboutPage";
 import NewsPage from "./pages/NewsPage";
 import ContactPage from "./pages/ContactPage";
-import AdminPage from "./pages/adminPages/AdminPage";
+import AdminPage from "./pages/AdminPage";
 import RegisterPage from "./pages/RegisterPage";
-import AdminProfile from "./pages/adminPages/adminProfile/AdminProfile";
-import Feed from "./Components/feed/Feed";
+import AdminProfile from "./pages/AdminProfile";
+import Feed from "./Components/Feed";
 const RouteProvider = () => {
   return (
     <div>

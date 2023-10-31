@@ -26,7 +26,6 @@ export const LoginContainer = styled(Container)`
       margin-top: 5vh;
       color: white;
       text-transform: uppercase;
-      font-family: Irish Grover;
     }
 
     input {

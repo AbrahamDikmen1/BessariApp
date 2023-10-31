@@ -1,7 +1,7 @@
 import React from "react";
 import RouteProvider from "./RouteProvider";
 import Navbar from "./Components/navbar/Navbar";
-import Footer from "./Components/footer/Footer";
+import Footer from "./Components/Footer";
 function App() {
   return (
     <div>

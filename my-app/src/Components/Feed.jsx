@@ -1,10 +1,9 @@
 import { useEffect, useState, useRef } from "react";
-import Post from "../post/Post";
-import Share from "../share/Share";
+import Post from "./post/Post";
+import Share from "./Share";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { FeedContainer } from "./styledFeed";
-
+import styled from "styled-components";
 const Feed = () => {
   const auth = useSelector((state) => state.auth);
   const [posts, setPosts] = useState([]);
@@ -37,16 +36,31 @@ const Feed = () => {
   console.log(posts);
   return (
     <FeedContainer>
-      <div className="feed">
-        <div className="feedWrapper">
-          {<Share />}
-          {posts.map((p) => (
-            <Post key={p._id} post={p} setDeletePost={setDeletePost} />
-          ))}
-        </div>
+      {<Share />}
+
+      <div className="feedWrapper">
+        {posts.map((p) => (
+          <Post key={p._id} post={p} setDeletePost={setDeletePost} />
+        ))}
       </div>
     </FeedContainer>
   );
 };
 
 export default Feed;
+
+export const FeedContainer = styled.div`
+  margin-top: 5rem;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 70rem;
+
+  .feedWrapper {
+    background-color: rgba(69, 101, 126, 0.041);
+  }
+
+  h1 {
+    color: black;
+  }
+`;

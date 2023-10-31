@@ -14,7 +14,6 @@ export const RegisterContainer = styled(Container)`
     margin-top: 3vh;
     color: white;
     text-transform: uppercase;
-    font-family: Irish Grover;
   }
   form {
     background-color: #00000076;
