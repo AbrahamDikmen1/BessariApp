@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
@@ -36,7 +37,7 @@ const Post = ({ post, setDeletePost }) => {
       text: (
         <span
           onClick={() => {
-            setDeletePost(post._id);
+            setDeletePost(post);
           }}
         >
           Ta bort
@@ -139,10 +140,9 @@ const Post = ({ post, setDeletePost }) => {
           <img
             className="postImg"
             src={`http://localhost:8080/images/` + post.img}
-            alt="img"
           />
           <div className="postText">
-            <p>{post.desc}</p>
+            <p re>{post.desc}</p>
           </div>
         </div>
       </div>
@@ -157,13 +157,13 @@ export const PostContainer = styled.div`
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   background-color: #ffffffeb;
-
-  .postWrapper {
-    padding: 10px 0;
-    margin-top: 3rem;
-    margin-bottom: 5rem;
+  @media screen and (min-width: 390px) {
+    .postWrapper {
+      padding: 10px 0;
+      margin-top: 3rem;
+      margin-bottom: 5rem;
+    }
   }
-
   .postTop {
     display: flex;
     align-items: center;

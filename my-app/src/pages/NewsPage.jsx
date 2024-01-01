@@ -37,15 +37,17 @@ const NewsPage = () => {
 export default NewsPage;
 
 export const NewsContainer = styled.div`
-  margin-top: 3rem;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 70rem;
+  @media screen and (min-width: 390px) {
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90rem;
 
-  h1 {
-    margin-left: 5px;
-    color: #2c2c2cb3;
-    font-size: 1.2rem;
-    font-weight: 600;
+    h1 {
+      margin-left: 5px;
+      color: #2c2c2cb3;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
   }
 `;

@@ -67,14 +67,13 @@ export default Footer;
 export const FooterContainer = styled.div`
   width: 100%;
   background-color: rgb(69, 101, 126);
-
+  position: static;
+  left: 0;
+  bottom: 0;
+  right: 0;
   .sb_footer_section_padding {
     padding: 2.5rem 4rem;
     background-color: #2d2d32;
-    position: static;
-    left: 0;
-    bottom: 0;
-    right: 0;
   }
 
   .h4 {

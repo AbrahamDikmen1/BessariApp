@@ -4,6 +4,7 @@ import Share from "./Share";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import styled from "styled-components";
+
 const Feed = () => {
   const auth = useSelector((state) => state.auth);
   const [posts, setPosts] = useState([]);
@@ -26,7 +27,8 @@ const Feed = () => {
   useEffect(() => {
     const handleDeletePost = async () => {
       if (deletePost) {
-        await axios.delete(`/api/posts/` + deletePost);
+        await axios.delete(`/api/posts/` + deletePost._id);
+
         window.location.reload();
       }
     };
@@ -34,6 +36,7 @@ const Feed = () => {
   }, [deletePost]);
 
   console.log(posts);
+  console.log(deletePost);
   return (
     <FeedContainer>
       {<Share />}

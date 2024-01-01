@@ -1,20 +1,16 @@
 import React from "react";
 
 import styled from "styled-components";
-import img from "../assets/Alan4.jpg";
+import img from "../assets/Alan.jpg";
 import advertising from "../assets/Alan.Ali.jpg";
 const LandingPage = () => {
   return (
     <LandingPageContainer>
-      <div className="top">
-        <img className="landingPageImg" src={img} alt="" />{" "}
-      </div>
-
+      <img className="landingPageImg" src={img} alt="" />
+      
       <div className="advertising">
-        <div className="justifyImg">
-          <img className="profileImg" src={advertising} alt="advertising" />
-        </div>
 
+        <img className="profileImg" src={advertising} alt="advertising" />
         <div className="about">
           <h1> Alán Ali</h1>
           <p>
@@ -49,19 +45,15 @@ export default LandingPage;
 
 export const LandingPageContainer = styled.div`
   width: 100%;
-  height: 100%;
 
-  .top {
+  .landingPageImg {
     background-color: rgb(69, 101, 126);
-    height: 45rem;
-    .landingPageImg {
-      width: 100%;
-      height: 45rem;
-      opacity: 70%;
-    }
+    width: 100%;
+    height: 55vh;
+    opacity: 70%;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 400px) {
     .advertising {
       justify-content: center;
       margin: 5vh auto;
@@ -76,26 +68,29 @@ export const LandingPageContainer = styled.div`
     border-radius: 50%;
     object-fit: cover;
   }
-  .about {
-    text-align: left;
-  }
-  h1 {
-    padding: 20px;
-    font-size: 2rem;
-    font-weight: 550;
-  }
 
-  p {
+  .about {
     padding: 20px;
-    font-family: "futura-pt", Sans-serif;
-    max-width: 50rem;
-    line-height: 1.9rem;
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    background-color: transparent;
+    @media (min-width: 400px) {
+      h1 {
+        font-size: 2rem;
+        font-weight: 550;
+      }
+    }
+
+    @media (min-width: 400px) {
+      text-align: left;
+      p {
+        font-family: "futura-pt", Sans-serif;
+        max-width: 50rem;
+        line-height: 1.9rem;
+        font-size: 1.6rem;
+
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+      }
+    }
   }
 `;

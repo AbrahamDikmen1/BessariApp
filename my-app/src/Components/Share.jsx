@@ -6,14 +6,27 @@ import ShareToSocialMedia from "../Components/ShareToSocialMedia";
 
 import styled from "styled-components";
 import axios from "axios";
-
+import { useNavigate } from "react-router";
 const Share = () => {
   const auth = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const desc = useRef();
   const [file, setFile] = useState(null);
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    window.location.reload();
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
     const newPost = {
@@ -37,11 +50,13 @@ const Share = () => {
     }
     try {
       await axios.post("/api/posts", newPost);
-      window.location.reload();
+
+      handleOpenModal();
     } catch (err) {
-      console.log(err, "2");
+      console.log(err);
     }
   };
+
   console.log(file);
   console.log(desc);
 
@@ -57,11 +72,7 @@ const Share = () => {
             />
             {file && (
               <div className="shareImgContainer">
-                <img
-                  className="shareImg"
-                  src={URL.createObjectURL(file)}
-                  alt=""
-                />
+                <img className="shareImg" src={URL.createObjectURL(file)} />
                 <Cancel
                   className="shareCancelImg"
                   onClick={() => setFile(null)}
@@ -73,6 +84,7 @@ const Share = () => {
               placeholder={"What's on your mind?"}
               className="shareInput"
               ref={desc}
+              required
             />
 
             <hr className="shareHr" />
@@ -96,8 +108,13 @@ const Share = () => {
                 </label>
               </div>
             </div>
-            {/* <ShareToSocialMedia image={image} desc={desc} /> */}
+
             <button className="shareButton">Dela inlägg</button>
+
+            <ShareToSocialMedia
+              openModal={openModal}
+              handleCloseModal={handleCloseModal}
+            />
           </div>
         </form>
       </div>

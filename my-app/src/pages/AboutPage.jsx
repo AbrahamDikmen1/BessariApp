@@ -41,39 +41,41 @@ export default AboutPage;
 
 export const AboutPageContainer = styled.div`
   width: 100%;
-  align-items: center;
 
-  .topInfo {
-    padding: 50px;
-    background-color: rgb(69, 101, 126);
-    text-align: left;
-    opacity: 90%;
+  @media screen and (min-width: 390px) {
+    .topInfo {
+      padding: 25px;
+      background-color: rgb(69, 101, 126);
+      text-align: left;
+      opacity: 90%;
+
+      h1 {
+        color: #ffffff73;
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+
+      h2 {
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 2.4rem;
+      }
+
+      p {
+        font-family: "futura-pt", Sans-serif;
+        max-width: 50rem;
+        line-height: 1.9rem;
+        padding: 5px;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #ffffff;
+      }
+    }
   }
 
-  h1 {
-    color: #ffffff73;
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-
-  h2 {
-    color: #ffffff;
-
-    font-weight: 600;
-    font-size: 2.4rem;
-  }
-
-  p {
-    font-family: "futura-pt", Sans-serif;
-    max-width: 50rem;
-    line-height: 1.5rem;
-    margin-top: 0;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #ffffff;
-  }
-
-  .bodyInfo {
-    height: 28rem;
+  @media screen and (min-width: 390px) {
+    .bodyInfo {
+      height: 18.2rem;
+    }
   }
 `;

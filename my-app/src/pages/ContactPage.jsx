@@ -40,8 +40,7 @@ const ContactPage = () => {
             >
               <LocalPostOfficeIcon sx={{ mr: "17px", fontSize: "2.7rem" }} />
               <Typography style={{ textTransform: "none" }}>
-                {" "}
-                {mail}{" "}
+                <p> {mail} </p>
               </Typography>
             </Button>
           </Grid>
@@ -58,58 +57,47 @@ export default ContactPage;
 export const ContactPageContainer = styled.div`
   width: 100%;
   align-items: center;
+  @media screen and (min-width: 390px) {
+    .topContactInfo {
+      padding: 25px;
+      background-color: rgb(69, 101, 126);
+      text-align: left;
+      height: 40vh;
+      opacity: 90%;
 
-  .topContactInfo {
-    padding: 50px;
-    background-color: rgb(69, 101, 126);
-    text-align: left;
-    height: 40vh;
-    opacity: 90%;
+      h1 {
+        color: #ffffff73;
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+
+      h2 {
+        margin-bottom: 50px;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 2.4rem;
+      }
+    }
   }
 
-  h1 {
-    color: #ffffff73;
-    font-size: 1.2rem;
-    font-weight: 500;
+  @media screen and (min-width: 400px) {
+    p {
+      font-family: "futura-pt", Sans-serif;
+      max-width: 50rem;
+      line-height: 1.5rem;
+      color: rgb(255, 255, 255);
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+    }
   }
 
-  h2 {
-    margin-bottom: 50px;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 2.4rem;
-  }
-
-  .contaktAddress {
-    background-color: #eff0f4;
-    width: 20rem;
-    border: 10px;
-    border-radius: 3px;
-  }
-
-  p {
-    font-family: "futura-pt", Sans-serif;
-    max-width: 50rem;
-    line-height: 1.5rem;
-    color: rgb(255, 255, 255);
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-  }
-
-  a {
-    font-family: "futura-pt", Sans-serif;
-    max-width: 50rem;
-    line-height: 1.5rem;
-    color: rgb(255, 255, 255);
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-
-  .bodyContactInfo {
-    height: 27rem;
+  @media screen and (min-width: 390px) {
+    .bodyContactInfo {
+      height: 30rem;
+    }
   }
 `;

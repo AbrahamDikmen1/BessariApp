@@ -6,7 +6,7 @@ const ProtectedRoute = ({ component, ...rest }) => {
   const auth = useSelector((state) => state.auth);
   console.log(auth.token);
 
-  return auth.token ? <Outlet /> : <Navigate to="/login" />;
+  return auth.token ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default ProtectedRoute;

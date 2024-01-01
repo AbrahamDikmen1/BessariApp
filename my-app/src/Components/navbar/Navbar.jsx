@@ -24,7 +24,7 @@ import { logoutUser } from "../../features/authSlice";
 import { navTabs } from "./StyledNavbar";
 import profilePicture from "../../assets/nedladdning.jpg";
 import bessariLogo from "../../assets/bessariLogo.png";
-import { Block } from "@mui/icons-material";
+
 function Navbar() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -171,10 +171,9 @@ function Navbar() {
       sx={{
         backgroundColor: "white",
         fontFamily: "Varela Round, sans-serif",
-        alignItems: "left",
       }}
     >
-      <Container maxWidth="xl"></Container>
+      <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Mobil skärm  */}
 
@@ -183,7 +182,6 @@ function Navbar() {
             noWrap
             component="a"
             href="/"
-            justifyContent="left"
             sx={{
               mr: 20,
               display: { xs: "none", md: "flex" },
